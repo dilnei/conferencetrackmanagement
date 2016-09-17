@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    template="/WEB-INF/templates/default.xhtml">
+
+    <ui:define name="content">
+        <h1>Welcome to Conference Track Management</h1>
+
+        <div>
+            <h3>Please add conference.</h3>
+        </div>
+
+        <h:form id="reg">
+            <h2>Conference multiple tracks</h2>
+            <p>The networking event start no earlier than 4:00 and no later than 5:00.</p>
+            <h:panelGrid columns="1" columnClasses="titleCell">
+				<h:inputTextarea id="name" value="#{text.input}" cols="60" rows="20" />
+                <h:message for="name" errorClass="invalid" />
+            </h:panelGrid>
+
+            <p>
+                <h:panelGrid columns="2">
+                    <h:commandButton id="register" action="#{trackManagementController.readInformation}" value="Read Information" styleClass="register" />
+                    <h:messages styleClass="messages" errorClass="invalid" infoClass="valid" warnClass="warning" globalOnly="true" />
+                </h:panelGrid>
+            </p>
+        </h:form>
+
+        <h2>Test output</h2>
+       	<c:forEach items="#{trackManagementController.textOutInput}" var="val"> 
+       		<h:outputLabel value="#{val.input}" style="width: 100%; text-align: left "/>
+        </c:forEach>
+    </ui:define>
+</ui:composition>
